@@ -31,6 +31,7 @@ ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff
         user_buffer = kmalloc(size, GFP_KERNEL);
     }
 
+    // Memory allocation fails
     if (user_buffer == NULL){
         printk(KERN_ERR "Failed to allocate %lu bytes of memory.", size);
         return size;
