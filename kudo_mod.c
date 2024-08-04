@@ -1,3 +1,4 @@
+// Includes
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/module.h>
@@ -5,20 +6,25 @@
 #include <linux/proc_fs.h>
 #include <linux/vmalloc.h>
 
+// Predeclares
 ssize_t kudo_read(struct file *file, char __user *user, size_t size, loff_t *off);
 ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff_t *off);
 
+// The Global Proc File Reference
 static struct proc_dir_entry *kudo_proc = NULL;
 
+// On Read
 ssize_t kudo_read(struct file *file, char __user *user, size_t size, loff_t *off)
 {
     return 0;
 }
 
+// On Write
 ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff_t *off)
 {
     char *user_buffer;
     short use_multipage = 0;
+    // Whether to use k or vmalloc
     if (size > PAGE_SIZE) {
         use_multipage = 1;
         user_buffer = vmalloc(size);
@@ -26,6 +32,7 @@ ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff
         user_buffer = kmalloc(size, GFP_KERNEL);
     }
 
+    // Memory allocation fails
     if (user_buffer == NULL){
         printk(KERN_ERR "Failed to allocate %lu bytes of memory.", size);
         return size;
@@ -63,6 +70,7 @@ static const struct proc_ops kudo_proc_fops =
     .proc_write = kudo_write,
 };
 
+// On Load
 static int __init kudo_init(void)
 {
     printk(KERN_INFO "Kudo Module Loaded\n");
@@ -75,15 +83,17 @@ static int __init kudo_init(void)
     return 0;
 }
 
+// On Unload
 static void __exit kudo_exit(void)
 {
     printk(KERN_INFO "Kudo Module Unloaded\n");
     proc_remove(kudo_proc);
 }
 
+// Metadata
 module_init(kudo_init);
 module_exit(kudo_exit);
 
 MODULE_DESCRIPTION("Adds command kudo to run code in the kernel");
-MODULE_AUTHOR("Jacob Freeman");
+MODULE_AUTHOR("Jacob (https://github.com/jacoblightning)");
 MODULE_LICENSE("GPL");
