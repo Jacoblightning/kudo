@@ -1,3 +1,4 @@
+// Includes
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/module.h>
@@ -5,16 +6,19 @@
 #include <linux/proc_fs.h>
 #include <linux/vmalloc.h>
 
+// Predeclares
 ssize_t kudo_read(struct file *file, char __user *user, size_t size, loff_t *off);
 ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff_t *off);
 
 static struct proc_dir_entry *kudo_proc = NULL;
 
+// On Read
 ssize_t kudo_read(struct file *file, char __user *user, size_t size, loff_t *off)
 {
     return 0;
 }
 
+// On Write
 ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff_t *off)
 {
     char *user_buffer;
@@ -63,6 +67,7 @@ static const struct proc_ops kudo_proc_fops =
     .proc_write = kudo_write,
 };
 
+// On Load
 static int __init kudo_init(void)
 {
     printk(KERN_INFO "Kudo Module Loaded\n");
@@ -75,6 +80,7 @@ static int __init kudo_init(void)
     return 0;
 }
 
+// On Unload
 static void __exit kudo_exit(void)
 {
     printk(KERN_INFO "Kudo Module Unloaded\n");
