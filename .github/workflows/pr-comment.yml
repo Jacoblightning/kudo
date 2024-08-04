@@ -1,7 +1,8 @@
 name: Comment on pull request
 on:
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ['build and upload']
+    types: [completed]
 jobs:
   pr_comment:
     if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
