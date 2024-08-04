@@ -14,4 +14,4 @@ You can now run `sudo ./kudo` to run code in the kernel.
 (I am currently working on getting stdin/out working.)
 
 # Prebuilt
-If you run the same system as the workflow servers, you can use a prebuild release from [Actions](https://github.com/Jacoblightning/kudo/actions) or [Nightly.link](https://nightly.link/Jacoblightning/kudo/workflows/build/main/build.zip)
+If you run the same system as the workflow servers, you can use a prebuilt release from [Actions](https://github.com/Jacoblightning/kudo/actions) or [Nightly.link](https://nightly.link/Jacoblightning/kudo/workflows/build/main/build.zip)
