@@ -18,7 +18,7 @@ int main(int argc, char **argv){
     }
 
     for (int i = 1; i < argc; i++){
-        fprintf(fptr, argv[i]);
+        fprintf(fptr, "%s", argv[i]);
         fprintf(fptr, " ");
     }
 
