@@ -10,6 +10,7 @@
 ssize_t kudo_read(struct file *file, char __user *user, size_t size, loff_t *off);
 ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff_t *off);
 
+// The Global Proc File Reference
 static struct proc_dir_entry *kudo_proc = NULL;
 
 // On Read
@@ -87,6 +88,7 @@ static void __exit kudo_exit(void)
     proc_remove(kudo_proc);
 }
 
+// Metadata
 module_init(kudo_init);
 module_exit(kudo_exit);
 
