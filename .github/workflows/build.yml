@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install Deps
-      run: sudo apt update && sudo apt upgrade linux linux-headers
+      run: sudo apt update && sudo apt upgrade build-essential
     - name: make
       run: make
     - name: Prep Artifacting
