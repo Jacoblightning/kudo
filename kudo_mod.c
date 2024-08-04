@@ -24,6 +24,7 @@ ssize_t kudo_write(struct file *file, const char __user *user, size_t size, loff
 {
     char *user_buffer;
     short use_multipage = 0;
+    // Whether to use k or vmalloc
     if (size > PAGE_SIZE) {
         use_multipage = 1;
         user_buffer = vmalloc(size);
