@@ -96,4 +96,4 @@ module_exit(kudo_exit);
 
 MODULE_DESCRIPTION("Adds command kudo to run code in the kernel");
 MODULE_AUTHOR("Jacob (https://github.com/jacoblightning)");
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("Unlicense");
